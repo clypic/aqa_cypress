@@ -1,0 +1,32 @@
+{
+  "name": "aqa_cypress",
+  "version": "0.0.0",
+  "description": "Automation QA using Cypress Testing Tools",
+  "keywords": [
+    "cypress",
+    "aqa",
+    "test",
+    "qa",
+    "automation",
+    "browser"
+  ],
+  "homepage": "https://github.com/clypic/aqa_cypress#readme",
+  "bugs": {
+    "url": "https://github.com/clypic/aqa_cypress/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clypic/aqa_cypress.git"
+  },
+  "license": "ISC",
+  "author": "Clyde Piccinino <clypic@gmail.com>",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "googleflights": "cypress run --spec cypress/e2e/google_flights",
+    "jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder"
+  },
+  "devDependencies": {
+    "cypress": "^15.11.0"
+  }
+}
