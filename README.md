@@ -1,2 +1,2 @@
-# aqa_cypress
-Automation QA using Cypress Testing Tools
+# Automation QA using Cypress Testing Tools
+

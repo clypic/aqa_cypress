@@ -1,0 +1,7 @@
+{
+  "$id": "PostsSchema.json",
+  "type": "array",
+  "items": {
+    "$ref": "PostSchema.json"
+  }
+}

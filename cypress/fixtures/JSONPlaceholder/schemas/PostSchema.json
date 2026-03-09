@@ -1,0 +1,19 @@
+{
+  "$id": "PostSchema.json",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false
+}

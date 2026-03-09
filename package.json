@@ -1,6 +1,6 @@
 {
   "name": "aqa_cypress",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Automation QA using Cypress Testing Tools",
   "keywords": [
     "cypress",
@@ -23,11 +23,18 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "googleflights": "cypress run --spec cypress/e2e/google_flights",
-    "jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder"
+    "test:lint": "eslint",
+    "test:googleflights": "cypress run --spec cypress/e2e/google_flights",
+    "test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder"
   },
   "devDependencies": {
-    "cypress": "^15.11.0"
+    "ajv": "^8.18.0",
+    "cypress": "^15.11.0",
+    "eslint": "^10.0.3",
+    "eslint-plugin-cypress": "^6.1.0",
+    "jiti": "^2.6.1",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.6"
   },
   "engines": {
     "node": ">=24.14.0"

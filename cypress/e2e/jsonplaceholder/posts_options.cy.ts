@@ -1,13 +1,13 @@
 describe('JSONPlaceholder API', () => {
 
     before(function() {
-        cy.fixture('JSONPlaceholder.json').as('data')
+        cy.fixture('JSONPlaceholder/service.json').as('service')
     })
 
     context('call', function() {
 
         beforeEach('call', function() {
-            cy.request({ method: 'OPTIONS', url: this.data.baseUrl + '/posts' }).as('res')
+            cy.request({ method: 'OPTIONS', url: this.service.baseUrl + '/posts' }).as('res')
         })
 
         it('verify success.', function() {

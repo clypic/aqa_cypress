@@ -1,19 +1,16 @@
 # Node
 /node_modules/
-/package-lock.json
-/yarn.lock
 
 # Environment files
 /.env
 
 # Logs
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Cypress
 cypress/videos
 cypress/screenshots
+test-results.xml
 
 # IDEs
 .classpath
