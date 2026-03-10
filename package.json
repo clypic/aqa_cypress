@@ -25,7 +25,9 @@
   "scripts": {
     "test:lint": "eslint",
     "test:googleflights": "cypress run --spec cypress/e2e/google_flights",
-    "test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder"
+    "dev:test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder --env environment=development",
+    "stg:test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder --env environment=staging",
+    "prd:test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder --env environment=production"
   },
   "devDependencies": {
     "ajv": "^8.18.0",

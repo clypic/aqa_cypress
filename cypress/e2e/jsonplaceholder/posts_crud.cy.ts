@@ -6,7 +6,7 @@ describe('JSONPlaceholder API', () => {
 
     describe('Verify get Post/s', function() {
         it('Get all Posts', function() {
-            cy.postGet(this.service.baseUrl)
+            cy.postGet()
                 .then(function(response) {
                     expect(response.status).to.eq(200)
                     cy.validatePostsSchema(response.body)
@@ -15,7 +15,7 @@ describe('JSONPlaceholder API', () => {
         })
         it('Get one Post', function() {
             const postId = 100
-            cy.postGet(this.service.baseUrl, postId)
+            cy.postGet(postId)
                 .then(function(response) {
                     expect(response.status).to.eq(200)
                     cy.validatePostSchema(response.body)
@@ -40,13 +40,12 @@ describe('JSONPlaceholder API', () => {
             .then(function(createdResponse) {
                 expect(createdResponse.status).to.eq(201)
 
-                cy.postDelete(this.service.baseUrl, createdResponse.body.id)
+                cy.postDelete(createdResponse.body.id)
                     .then(function(getResponse) {
                         expect(getResponse.status).to.eq(200)
                     })
             })
     })
-
     it('Update Post', function() {
         cy.request({
             method: 'PATCH',
@@ -60,7 +59,7 @@ describe('JSONPlaceholder API', () => {
             .then(function(updatedResponse) {
                 expect(updatedResponse.status).to.eq(200)
 
-                cy.postDelete(this.service.baseUrl, updatedResponse.body.id)
+                cy.postDelete(updatedResponse.body.id)
                     .then(function(getResponse) {
                         expect(getResponse.status).to.eq(200)
                     })
@@ -69,11 +68,11 @@ describe('JSONPlaceholder API', () => {
 
     it('Delete Post', function() {
         const postId = 101
-        cy.postDelete(this.service.baseUrl, postId)
+        cy.postDelete(postId)
             .then(function(deleteResponse) {
                 expect(deleteResponse.status).to.eq(200)
 
-                cy.postGet(this.service.baseUrl, postId)
+                cy.postGet(postId)
                     .then(function(getResponse) {
                         expect(getResponse.status).to.eq(404)
                     })
@@ -81,7 +80,7 @@ describe('JSONPlaceholder API', () => {
     })
 
     it('Get non-existing Post', function() {
-        cy.postGet(this.service.baseUrl, 999)
+        cy.postGet(999)
             .then(function(getResponse) {
                 expect(getResponse.status).to.eq(404)
             })
