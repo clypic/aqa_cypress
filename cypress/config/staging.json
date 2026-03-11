@@ -1,5 +1,10 @@
 {
   "env": {
-    "apiBaseUrl": "https://jsonplaceholder-stg.typicode.com"
+    "jsonplaceholder": {
+      "baseUrl": "n/a"
+    },
+    "google_flights": {
+      "baseUrl": "n/a"
+    }
   }
 }

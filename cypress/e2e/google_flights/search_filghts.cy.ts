@@ -2,20 +2,24 @@
 //https://docs.cypress.io/app/guides/cross-origin-testing
 describe('Google Travel Flights page', () => {
 
-    before(function() {
-        cy.fixture('GoogleFlights.json').as('data')
+    beforeEach(function() {
+        cy.fixture('GoogleFlights/selectors.json').as('selectors')
     })
 
-    it('visit', function() {
-        cy.origin('https://www.google.com', function() {
-            cy.visit(`/travel/flights`)
-            cy.scrollTo('bottom')
-            cy.document().screenshot()
-        })
+    it('visit page', function() {
+        cy.env(['google_flights', 'google_consent'])
+          .then(function({ googleFlights, googleConsent }) {
 
-        cy.origin('https://consent.google.com', function() {
-            cy.get(`button[aria-label='Reject all']`).eq(2).click()
-            cy.document().screenshot()
+            cy.origin(googleFlights.baseUrl, function() {
+                cy.visit(`/travel/flights`)
+                cy.scrollTo('bottom')
+                cy.document().screenshot()
+            })
+
+            cy.origin(googleConsent.baseUrl, function() {
+                cy.get(selectors.buttonRejectAll).eq(2).click()
+                cy.document().screenshot()
+            })
         })
     })
 })

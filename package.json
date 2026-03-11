@@ -24,12 +24,14 @@
   "main": "index.js",
   "scripts": {
     "test:lint": "eslint",
-    "test:googleflights": "cypress run --spec cypress/e2e/google_flights",
+    "prd:test:googleflights": "cypress run --spec cypress/e2e/google_flights",
     "dev:test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder --env environment=development",
     "stg:test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder --env environment=staging",
     "prd:test:jsonplaceholder": "cypress run --spec cypress/e2e/jsonplaceholder --env environment=production"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
     "ajv": "^8.18.0",
     "cypress": "^15.11.0",
     "eslint": "^10.0.3",

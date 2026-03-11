@@ -1,11 +1,8 @@
 describe('JSONPlaceholder API', () => {
-
-    beforeEach(function() {
-        cy.fixture('JSONPlaceholder/service.json').as('service')
-    })
-
+  
     describe('Verify get Post/s', function() {
-        it('Get all Posts', function() {
+        
+      it('Get all Posts', function() {
             cy.postGet()
                 .then(function(response) {
                     expect(response.status).to.eq(200)
@@ -13,6 +10,7 @@ describe('JSONPlaceholder API', () => {
                     expect(response.body).to.have.lengthOf(100)
                 })
         })
+        
         it('Get one Post', function() {
             const postId = 100
             cy.postGet(postId)
@@ -28,17 +26,19 @@ describe('JSONPlaceholder API', () => {
     })
 
     it('Create Post', function() {
-        cy.request({
-            method: 'POST',
-            url: this.service.baseUrl + '/posts',
-            body: {
-                title: 'International Women`s Day',
-                body: 'Today is International Women`s Day, celebrated on March 8 each year. This day highlights the achievements of women and advocates for gender equality worldwide.',
-                userId: 101
-            }
-        })
+        const postCreate = {
+            title: 'International Women`s Day',
+            body: 'Today is International Women`s Day, celebrated on March 8 each year. This day highlights the achievements of women and advocates for gender equality worldwide.',
+            userId: 101
+        }
+        cy.postCreate(postCreate)
             .then(function(createdResponse) {
                 expect(createdResponse.status).to.eq(201)
+                cy.validatePostSchema(createdResponse.body)
+
+                expect(createdResponse.body.title).to.eq(postCreate.title)
+                expect(createdResponse.body.body).to.eq(postCreate.body)
+                expect(createdResponse.body.userId).to.eq(postCreate.userId)
 
                 cy.postDelete(createdResponse.body.id)
                     .then(function(getResponse) {
@@ -46,18 +46,21 @@ describe('JSONPlaceholder API', () => {
                     })
             })
     })
+    
     it('Update Post', function() {
-        cy.request({
-            method: 'PATCH',
-            url: this.service.baseUrl + '/posts/100',
-            body: {
-                title: 'International Women`s Day',
-                body: 'Today is International Women`s Day, celebrated on March 8 each year. This day highlights the achievements of women and advocates for gender equality worldwide.',
-                userId: 100
-            }
-        })
+      const postUpdate = {
+            title: 'International Women`s Day UPDATED.',
+            body: 'Today is International Women`s Day, celebrated on March 8 each year. This day highlights the achievements of women and advocates for gender equality worldwide. UPDATED.',
+            userId: 102
+        }
+        cy.postUpdate(100, postUpdate)
             .then(function(updatedResponse) {
                 expect(updatedResponse.status).to.eq(200)
+                cy.validatePostSchema(updatedResponse.body)
+                
+                expect(updatedResponse.body.title).to.eq(postUpdate.title)
+                expect(updatedResponse.body.body).to.eq(postUpdate.body)
+                expect(updatedResponse.body.userId).to.eq(postUpdate.userId)
 
                 cy.postDelete(updatedResponse.body.id)
                     .then(function(getResponse) {

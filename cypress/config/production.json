@@ -1,5 +1,13 @@
 {
   "env": {
-    "apiBaseUrl": "https://jsonplaceholder.typicode.com"
+    "jsonplaceholder": {
+      "baseUrl": "https://jsonplaceholder.typicode.com"
+    },
+    "google_flights": {
+      "baseUrl": "https://www.google.com"
+    },
+    "google_consent": {
+      "baseUrl": "https://consent.google.com"
+    }
   }
 }
